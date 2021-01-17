@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import './ResultCards.css';
@@ -94,7 +94,6 @@ const ResultCards = ({ allSubjectCodes, gradesProp, creditsProp, gpaProp }) => {
           break;
       }
       gpa = gpa + points * creditsProp[i];
-      console.log(gpa);
     }
     if (maxgpa !== 0) {
       gpaProp = (gpa * 10) / maxgpa;
