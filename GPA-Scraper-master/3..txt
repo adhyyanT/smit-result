@@ -1,0 +1,17 @@
+		SIKKIM MANIPAL UNIVERSITY 
+
+		GRADE SHEET - NOV/DEC 2020 EXAMINATIONS.  
+
+Subject Code  : EC5182
+Subject Title : SEMINAR II
+Subject Credit : 2.0
+
+REG_NO		Int	UM	TOT	GRADE
+201910025	-	90.2	91	S
+
+
+Abbreviations : INT = IN SEM marks, UM : END SEM marks.
+
+
+Absolute Grading Range : 
+ S>=85, A: 75-84, B: 65-74, C: 55-64, D:45-54, E:35-44, F<35

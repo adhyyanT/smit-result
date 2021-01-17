@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import './ResultCards.css';
@@ -49,10 +49,57 @@ const useStyles = makeStyles({
   },
 });
 
-let tempKey = 0;
-
-const ResultCards = ({ allSubjectCodes }) => {
+const ResultCards = ({ allSubjectCodes, gradesProp, creditsProp, gpaProp }) => {
   const classes = useStyles();
+  let tempKey = 0;
+
+  const calculateGpa = () => {
+    let points = 0;
+    let gpa = 0;
+    let maxgpa = 0;
+    for (let j = 0; j < creditsProp.length; j++) {
+      maxgpa = maxgpa + creditsProp[j] * 10;
+    }
+
+    for (let i = 0; i < gradesProp.length; i++) {
+      switch (gradesProp[i]) {
+        case 'S':
+          points = 10;
+          break;
+        case 'A':
+          points = 9;
+          break;
+        case 'B':
+          points = 8;
+          break;
+        case 'C':
+          points = 7;
+          break;
+        case 'D':
+          points = 6;
+          break;
+        case 'E':
+          points = 5;
+          break;
+        case 'F':
+          points = 0;
+          break;
+        case 'I':
+          points = 0;
+          break;
+        case 'MP':
+          points = 0;
+          break;
+        default:
+          break;
+      }
+      gpa = gpa + points * creditsProp[i];
+      console.log(gpa);
+    }
+    if (maxgpa !== 0) {
+      gpaProp = (gpa * 10) / maxgpa;
+    }
+  };
 
   return (
     <Card
@@ -65,7 +112,7 @@ const ResultCards = ({ allSubjectCodes }) => {
     >
       <CardContent>
         <table>
-          <Typography variant='tr' component='thead'>
+          <Typography variant='h5' component='thead'>
             <tr>
               <th className='cssSubTitle' style={{ color: '#ffffff' }}>
                 Subjects
@@ -77,6 +124,9 @@ const ResultCards = ({ allSubjectCodes }) => {
           </Typography>
           <Typography variant='body2' component='tbody'>
             {allSubjectCodes.map((subject) => {
+              gradesProp.push(subject.grade);
+              creditsProp.push(subject.credit);
+              calculateGpa();
               return (
                 <tr key={tempKey++} className={classes.trStyle}>
                   <td className={classes.subjects}>{subject.sub}</td>
@@ -86,7 +136,7 @@ const ResultCards = ({ allSubjectCodes }) => {
             })}
           </Typography>
         </table>
-        <p className={classes.gpa}>GPA: 9.99 </p>
+        <p className={classes.gpa}>GPA: {gpaProp} </p>
       </CardContent>
     </Card>
   );

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import data21 from '../21.json';
+import data21 from '../3.json';
 import ResultCards from './ResultCards';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import './SearchnButton.css';
-import sample from '../videos/video-1.mp4';
+
 import Card from '@material-ui/core/Card';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 
@@ -12,6 +12,11 @@ const SearchnButton = () => {
   const [regno, setRegno] = useState('201700403');
   const [query, setQuery] = useState('201700403');
   const [result, setResult] = useState([]);
+
+  // GPA TODO
+  let gpa = useRef(0);
+  let grades = useRef([]);
+  let credits = useRef([]);
 
   const updateSearch = (e) => {
     setRegno(e.target.value);
@@ -28,6 +33,9 @@ const SearchnButton = () => {
     const response = data21[`${query}`];
 
     refResult.current = [];
+    grades.current = [];
+    credits.current = [];
+    gpa.current = 0;
     for (let i in response) {
       refResult.current.push(response[i]);
     }
@@ -62,7 +70,12 @@ const SearchnButton = () => {
         </Card>
       </form>
       <div>
-        <ResultCards allSubjectCodes={result} />
+        <ResultCards
+          allSubjectCodes={result}
+          gradesProp={grades.current}
+          creditsProp={credits.current}
+          gpaProp={gpa.current}
+        />
       </div>
     </div>
   );
