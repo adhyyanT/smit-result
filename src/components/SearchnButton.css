@@ -1,0 +1,24 @@
+.SearchButton {
+  /* margin-left: 100px; */
+  height: 8vh;
+}
+.SearchBar {
+  height: 8vh;
+}
+
+.WhlForm {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 15vh;
+  margin-top: 0.55%;
+  margin-bottom: auto;
+  padding-top: 1%;
+}
+video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -1;
+}
